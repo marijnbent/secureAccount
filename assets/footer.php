@@ -1,6 +1,8 @@
 <?php
 // Closing the msqli connection after usage.
-mysqli_close($dbLink);
+if (isset($dbLink)) {
+	mysqli_close($dbLink);
+}
 ?>
 
 </div> <!-- Closing the container -->

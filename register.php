@@ -16,12 +16,11 @@ if (isset($_POST['submitRegister'])) {
 		//Check if email is already in use
 		$select = "SELECT email FROM Users WHERE email = '" . $email . "'";
 		$emailVertification = queryToDatabase($dbLink, $select);
-
 		//If the email isn't registerd, insert new row in Users table.
 		if (mysqli_num_rows($emailVertification) == 0) {
 			$salt = generateSalt();
-			$hash = hashPassword($salt, "hallo");
-			$insert = "INSERT INTO `users` (`name`, `email`, `password`, `salt`) VALUES ('" . $name . "', '" . $email . "', '" . $password . "', '" . $salt . "')";
+			$hash = hashPassword($salt, $_POST['password']);
+			$insert = "INSERT INTO `users` (`name`, `email`, `password`, `salt`) VALUES ('" . $name . "', '" . $email . "', '" . $hash . "', '" . $salt . "')";
 			queryToDatabase($dbLink, $insert);
 			header("Location: login.php?registered");
 			exit;

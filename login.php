@@ -17,7 +17,6 @@ if (isset($_POST['submit'])) {
 	//Anti sql injection via the input field and put the values of the form to variables.
 
 	$email = dataFilter($_POST['email'], $dbLink);
-//	$password = dataFilter($_POST['password'], $dbLink);
 
 	//Create query to collect the email and password from database.
 	$select = "SELECT * FROM users
@@ -25,11 +24,9 @@ if (isset($_POST['submit'])) {
 
 	//Send query to the function mySqlConnection with the query, config settings and dbconnection.
 	$result = queryToDatabase($dbLink, $select);
-	$user = queryToArray($result);
-
+	$user = resultToArray($result);
 	$correctPassword = $user[0]['password'];
 	$salt = $user[0]['salt'];
-
 	$inputPassword = hashPassword($salt, $_POST['password']);
 
 	//Checks if the returned array is empty and if the email and password match the input value's.
@@ -37,9 +34,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION["userId"] = $user[0]['id'];
 		$_SESSION['email'] = $user[0]['email'];
 		$_SESSION['name'] = $user[0]['name'];
-		//Create session variable which we can check on other pages if the user is logged in
 		$_SESSION["loggedIn"] = true;
-
 		header("Location: teams.php");
 		exit;
 	} else {

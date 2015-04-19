@@ -6,9 +6,8 @@
 	<head lang="en">
 		<meta charset="UTF-8">
 		<title>Secure login system</title>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/style.css"/>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
 	</head>
 <body>
 

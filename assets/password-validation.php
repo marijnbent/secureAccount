@@ -6,7 +6,6 @@ function generateSalt () {
 }
 
 function hashPassword($salt, $password) {
-	$iterations = 1000;
-	$hash = hash_pbkdf2("sha256", $password, $salt, $iterations, 48);
+	$hash = hash_pbkdf2("sha256", $password, $salt, 10000, 48);
 	return $hash;
 }
