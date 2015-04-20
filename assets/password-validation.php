@@ -26,7 +26,7 @@ function sendEmail()
 {
 	$to = $_SESSION['email'];
 	$subject = 'Two-factor Login';
-	echo $_SESSION["authenticationCode"]['code'];
+//	echo "Code:  " . $_SESSION["authenticationCode"]['code'];
 	$message = 'Hi there. Thank you for using the two-factor authentication, it is much safer. Your code is ' . $_SESSION["authenticationCode"]['code'] . ' and valid for the next hour.';
 	$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 

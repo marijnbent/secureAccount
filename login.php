@@ -8,6 +8,11 @@ if (isset($_SESSION['loggedIn'])) {
 	exit;
 }
 
+if (isset($_SESSION['authentication'])) {
+	header("Location: login-validation.php");
+	exit;
+}
+
 if (isset($_GET['registered'])) {
 	$message = "U kunt nu inloggen met uw zojuist ingevulde gegevens.";
 }
@@ -32,8 +37,8 @@ if (isset($_POST['submit'])) {
 		$_SESSION['email'] = $user[0]['email'];
 		$_SESSION['name'] = $user[0]['name'];
 		twoFactorAuthentication();
-//		$_SESSION["loggedIn"] = true;
-//		header("Location: secure.php");
+		$_SESSION["authentication"] = true;
+		header("Location: login-validation.php");
 //		exit;
 	} else {
 		//If there is no match, show message with the result.

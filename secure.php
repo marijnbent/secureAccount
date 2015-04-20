@@ -2,6 +2,11 @@
 
 require_once 'assets/phpheader.php';
 
+if (!isset($_SESSION['loggedIn'])) {
+	header("Location: login.php");
+	exit;
+}
+
 ?>
 
 <?php require_once 'assets/header.php'; ?>
