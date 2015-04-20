@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['email'] = $user[0]['email'];
 		$_SESSION['name'] = $user[0]['name'];
 		$_SESSION["loggedIn"] = true;
-		header("Location: teams.php");
+		header("Location: secure.php");
 		exit;
 	} else {
 		//If there is no match, show message with the result.

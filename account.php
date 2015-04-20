@@ -14,8 +14,15 @@ if (isset($_POST['submitEdit'])) {
 		$emailVertification = queryToDatabase($dbLink, $select);
 		//If the email isn't registerd before, insert new row in Users table.
 		if (mysqli_num_rows($emailVertification) == 0 || $_POST['email'] == $_SESSION['email']) {
-			$update = "UPDATE `users` SET `email` = '" . $_POST['email'] . "', `name` = '" . $_POST['name'] . "' WHERE `id` = '" . $_SESSION['userId'] . "'";
+
+			$email = dataFilter($_POST['email'], $dbLink);
+			$name = dataFilter($_POST['name'], $dbLink);
+
+			$update = "UPDATE `users` SET `email` = '" . $email . "', `name` = '" . $name . "' WHERE `id` = '" . $_SESSION['userId'] . "'";
 			queryToDatabase($dbLink, $update);
+
+			$_SESSION['email'] = $email;
+			$_SESSION['name'] = $name;
 			header("Location: account.php?success");
 			exit;
 		} else {
@@ -28,8 +35,8 @@ if (isset($_POST['submitEdit'])) {
 
 //Select drinks and put them in array.
 $select = "SELECT * FROM users WHERE users.id =" . $_SESSION['userId'] . "";
-$userSettings = queryToDatabase($dbLink, $select);
-$userSettings = queryToArray($userSettings);
+$result = queryToDatabase($dbLink, $select);
+$userSettings = resultToArray($result);
 
 ?>
 

@@ -1,5 +1,7 @@
 <?php
 
+require_once 'assets/phpheader.php';
+
 ?>
 
 <?php require_once 'assets/header.php'; ?>
