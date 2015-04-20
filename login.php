@@ -15,13 +15,10 @@ if (isset($_GET['registered'])) {
 //If you've submitted the login form, this function will start to check your data.
 if (isset($_POST['submit'])) {
 	//Anti sql injection via the input field and put the values of the form to variables.
-
 	$email = dataFilter($_POST['email'], $dbLink);
-
 	//Create query to collect the email and password from database.
 	$select = "SELECT * FROM users
 			   WHERE `email` = '" . $email . "'";
-
 	//Send query to the function mySqlConnection with the query, config settings and dbconnection.
 	$result = queryToDatabase($dbLink, $select);
 	$user = resultToArray($result);
@@ -34,9 +31,10 @@ if (isset($_POST['submit'])) {
 		$_SESSION["userId"] = $user[0]['id'];
 		$_SESSION['email'] = $user[0]['email'];
 		$_SESSION['name'] = $user[0]['name'];
-		$_SESSION["loggedIn"] = true;
-		header("Location: secure.php");
-		exit;
+		twoFactorAuthentication();
+//		$_SESSION["loggedIn"] = true;
+//		header("Location: secure.php");
+//		exit;
 	} else {
 		//If there is no match, show message with the result.
 		$danger = "Inloggen is niet gelukt. Probeer het opnieuw.";
