@@ -24,8 +24,8 @@ if (isset($_POST['submit'])) {
 	}
 }
 
-echo $_SESSION['authenticationCode']['code'];
-
+//Only echo when testing.
+//echo $_SESSION['authenticationCode']['code'];
 
 ?>
 
